@@ -33,3 +33,12 @@ body{
     border-radius: 5px;
     cursor: pointer;
 }
+
+.msg.sucesso{
+    background-color: rgb(33, 192, 33);
+    color: rgb(132, 145, 113);
+}
+.msg.erro{
+    background-color: rgb(194, 152, 152);
+    color: rgb(231, 17, 17);
+}
