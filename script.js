@@ -1,7 +1,7 @@
-function validarCPF(){
-    cpf = cpf.replace(/[^\d]+/g,"");
+function validarCPF(cpf){
+    cpf = cpf.replace(/[^\d]+/g, "");
 
-    if(cpf.length !== 11 || /^(\d)\1+$/.teste(cpf)){
+    if(cpf.length !== 11 || /^(\d)\1+$/.test(cpf)){
         return false;
     }
 
@@ -11,7 +11,7 @@ function validarCPF(){
     // Validação do 1º DV
 
     for(let i=1; i<=9; i++){
-        soma += parseInt(cpf.substring(i-1,i)) * (11 - i)
+        soma += parseInt(cpf.substring(i-1,i)) * (11 - i);
         
     }
 
@@ -29,7 +29,7 @@ function validarCPF(){
     soma = 0;
 
     for(let i=1; i<=10; i++){
-        soma += parseInt(cpf.substring(i-1,i)) * (12-i)
+        soma += parseInt(cpf.substring(i-1,i)) * (12-i);
     }
 
     resto = (soma*10) % 11;
@@ -44,3 +44,18 @@ function validarCPF(){
 
     return true;
 }
+
+document.getElementById("cpfform").addEventListener("submit", function(e){
+    e.preventDefault();
+    const cpfInput = document.getElementById("cpf").value;
+    const msg = document.getElementById("msg");
+
+    if(validarCPF(cpfInput)){
+        msg.textContent = "CPF Valido!!!";
+        msg.className="msg sucesso";
+    }else{
+        msg.textContent = "CPF Invalido!!!";
+        msg.className="msg erro";
+    }
+    msg.style.display = "block";
+});
